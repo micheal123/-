@@ -70,7 +70,6 @@ Status seq::InsertList(member* &m,member *e){
 			return ERROR;	//序号错误 直接返回 
 		m=m+id-1;//定义要插入的位置 
 		temp=length+1;
-		printf("%d\n",temp);
 		while(end>=m){
 			*(end+1)=*end;//将都往后移动一位 
 			(end+1)->id=temp;//将移动后的元素序号改为1 
@@ -79,6 +78,7 @@ Status seq::InsertList(member* &m,member *e){
 		}
 		length++;
 		*(end+1)=*e;//插入 
+		delete e; 
 		return OK;
 	
 }
