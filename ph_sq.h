@@ -11,7 +11,7 @@ class seq{
 		void ReadFile();
 		void QueryList();	
 		void SaveFile();
-		Status DeletList(ElemeType index);
+		Status DeletList(ElemeType index,link &lk);
 		Status InsertList(member *e);
 		Status Update();
 }; 
@@ -60,13 +60,16 @@ void seq::SaveFile(){
 	printf("%d\n",length);
 	QueryList();
 }
-Status seq::DeletList(ElemeType index){
-	member *end,*t;
+Status seq::DeletList(ElemeType index,link &lk){
+	member *end,*t,*dt;
 	t=m;
 	end=t+length-1;//定义表尾 
 	if(index>length||index<1)
 		return ERROR;
-	t=t+index-1;
+	t=t+index-1;	
+	dt=new member();
+	*dt=*t;
+	lk.InsertList(dt);
 	while(t<=end){
 		*t=*(t+1);//删掉一个，往前挪一位 
 		t->id=index;

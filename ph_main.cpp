@@ -1,5 +1,6 @@
 #include<cstdio>
 #include<string.h>
+#include<stdlib.h>
 #define ERROR -1
 #define OK 1
 #define MAXSIZE 80
@@ -11,15 +12,23 @@ class member{
 	char name[MAXSIZE],sex[MAXSIZE],remark[MAXSIZE];
 	member *next;//链表时用的 
 };
-#include"ph_sq.h"
 #include"ph_link.h"
+#include"ph_sq.h"
 using namespace std;
 int main(){
-  	ElemeType t,num;
-  	class member *m ,*pm,*d,*pd,*e;//m是通讯录的原文件pm为第一个元素，d是被删除的表（链表）
-//	  d=new member();//新建一个头节点
-//	  pd=d;  
-		seq sq;//实例化一个类	
+  	ElemeType t,dt,num;
+  	class member *m ,*d,*e;//m是通讯录的原文件pm为第一个元素，d是被删除的表（链表）
+		link lk;
+		seq sq;//实例化一个类
+		freopen("delet.txt","r",stdin);
+			scanf("%d",&dt);
+			if(dt==NULL){
+				dt=0;
+		}
+			lk.setlink(dt,d);
+			lk.InitList();
+			lk.ReadFile();
+				fclose(stdin);
 		freopen("data.txt","r",stdin);
 		scanf("%d",&t);
 		if(t==NULL){
@@ -88,7 +97,7 @@ int main(){
             scanf("%d",&id);
             if(id==-1)
 				break;
-		    if(sq.DeletList(id)){
+		    if(sq.DeletList(id,lk)){
 		           	printf("删除成功！！！\n");
 		           	break;
 			}else{
@@ -112,6 +121,7 @@ int main(){
             
         case 7:  
             {  
+            lk.QueryList();
                 /*head=load(head);*/   
 				  break;                           //查看被删目录  
             }  
@@ -125,7 +135,8 @@ int main(){
         case 9:  
             {  
                 /*head=delete_txl(head);                           //退出系统  
-                print(head); */    
+                print(head); */
+				   exit(0); 
 				break; 
             }  
            
