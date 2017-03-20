@@ -25,22 +25,20 @@ int main(){
 		if(t==NULL){
 		t=0;
 		}
-		sq.setseq(t,MAXSIZE); 
-		sq.InitList(m);//初始化 	
-	  	pm=m;//将头指针存放 
-		sq.ReadFile(m);	
+		sq.setseq(t,MAXSIZE,m); 
+		sq.InitList();	
+		sq.ReadFile();	//初始化 
 		fclose(stdin);
 		freopen("CON", "r ", stdin); 
-					print();		
+		print();
 	while(1){	
 			scanf("%d",&num); 
 		 switch(num)  
         {  
         case 1:  
             {  
-            sq.setseq(0,MAXSIZE); 
-            sq.InitList(m);
-            	pm=m;
+            sq.setseq(0,MAXSIZE,m); 
+            sq.InitList();
 				break;   
             }  
             
@@ -48,8 +46,7 @@ int main(){
             {  
 			printf("正在保存中....\n");
              freopen("data.txt","w",stdout);
-             m=pm;
-			 sq.SaveFile(m);
+			 sq.SaveFile();
 			 fclose(stdout);
 			freopen("CON","w",stdout);	
 			 printf("保存成功！\n");
@@ -59,9 +56,7 @@ int main(){
             
         case 3:  
             { 
-			m=pm;
-			sq.QueryList(m);//
-                /*head=sq.DeletList(m,2);*/                               //查看通讯录   
+			sq.QueryList();//
            break;  
 		     }  
            
@@ -73,13 +68,7 @@ int main(){
 			 	scanf("%d",&e->id);
 				cout<<"请依次输入姓名，性别，电话1，电话2，备注信息：\n"; 
 		 		cin>>e->name>>e->sex>>e->tle1>>e->tle2>>e->remark;
-//		 	e->id=2;//插入第几项又用户指定 
-//				strcpy(e->name,"wwwww");
-//				strcpy(e->sex,"男");
-//				strcpy(e->remark,"wwww");
-//		 		e->tle1=12321321;
-//				e->tle2=1111111;
-				 	if(sq.InsertList(m,e))
+				 	if(sq.InsertList(e))
 			{	
 				printf("插入成功\n"); 
 				break;
@@ -99,7 +88,7 @@ int main(){
             scanf("%d",&id);
             if(id==-1)
 				break;
-		    if(sq.DeletList(m,id)){
+		    if(sq.DeletList(id)){
 		           	printf("删除成功！！！\n");
 		           	break;
 			}else{
@@ -113,7 +102,7 @@ int main(){
             {  
 			while(1){
             	  printf("请输入要修改的条数：\n") ;
-            	 if(sq.Update(m)){
+            	 if(sq.Update()){
             	 	printf("修改成功！\n"); 
 					 break;
 				 }
