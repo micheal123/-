@@ -23,8 +23,6 @@ int main(){
 		lk.InitList();	
 		lk.ReadFile();
 		lk.QueryList();
-		lk.DeletList(6);
-		lk.QueryList();
 			e=new member();
 		 		e->id=2;//插入第几项又用户指定 
 				strcpy(e->name,"wwwww");

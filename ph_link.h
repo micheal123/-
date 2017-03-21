@@ -31,18 +31,19 @@ void link::ReadFile(){
 	 temp=length;
 	while(temp){
 	t->next=new member();
-	scanf("%d%s%s%d%d%s",&(t->id),&(t->name),&(t->sex),&(t->tle1),&(t->tle2),&(t->remark));
 	t=t->next;	//ÒÆ¶¯Ö¸Õë 
+	scanf("%d%s%s%d%d%s",&(t->id),&(t->name),&(t->sex),&(t->tle1),&(t->tle2),&(t->remark));
+	t->next=NULL;
 	temp--;
 	}
-	t->next=NULL;
+	
 }
 void link::QueryList(){
 	member *t;
 	t=d;
 	while(t->next!=NULL){
+		t=t->next;	
 		printf("%d\t%s\t%s\t%d\t%d\t%s\n",(t->id),(t->name),(t->sex),(t->tle1),(t->tle2),(t->remark));
-		t=t->next;
 	}
 }
 Status link::DeletList(ElemeType index){
@@ -87,20 +88,19 @@ Status link::InsertList(member *e){
 	ElemeType temp;
 		member *t;
 		t=d;
-	
 			while(t->next!=NULL){
 			t=t->next;
 			} 
 			e->next=NULL;			
 			t->next=e;
-			t=d;
+			t=d->next;
 			temp=1;
 		while(t->next!=NULL){
-			t->id=temp;			
-			t=t->next;
-				printf("%s\n",t->name);
+			t->id=temp;		
+			t=t->next;	
 			temp++;	
 		}	
+		length++; 
 }
 
 
