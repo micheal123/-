@@ -33,7 +33,7 @@ void seq::ReadFile(){
 	 temp=length;  
 	  while(temp)
 	   {	
-	   	scanf("%d%s%s%d%d%s",&(t->id),&(t->name),&(t->sex),&(t->tle1),&(t->tle2),&(t->remark));
+	   	scanf("%d%s%s%d%d%s%s",&(t->id),&(t->name),&(t->sex),&(t->tle1),&(t->tle2),&(t->email),&(t->remark));
 		temp--;
 		t++;
 	   }
@@ -51,7 +51,7 @@ void seq::QueryList(){
 	t=m;
 	temp=length;
 	while(temp){
-		printf("%d\t%s\t%s\t%d\t%d\t%s\n",(t->id),(t->name),(t->sex),(t->tle1),(t->tle2),(t->remark));
+		printf("%d\t%s\t%s\t%d\t%d\t%s\t%s\n",(t->id),(t->name),(t->sex),(t->tle1),(t->tle2),(t->email),(t->remark));
 		temp--;
 		t++;
 	}
@@ -122,30 +122,42 @@ Status seq::DeletList(ElemeType index,link &lk){
 						}
 				 }
 				 return OK;
-	}
-
-Status seq::InsertList(member *e){
-		int id,temp;
-		member *end,*t;
-		t=m;
-		end=t+length-1;//定义表尾 
-		id=e->id;
-		if(id>(length+1)||id<0)
-			return ERROR;	//序号错误 直接返回 
-		t=t+id-1;//定义要插入的位置 
-		temp=length+1;
-		while(end>=t){
-			*(end+1)=*end;//将都往后移动一位 
-			(end+1)->id=temp;//将移动后的元素序号改为1 
-			end--; 
-			temp--;	
+	}	
+	Status seq::InsertList(member *e){
+		member *end;
+		if(length==size){
+			return ERROR;
 		}
+		end=m+length-1;
+		e->id=length+1;
+		*(end+1)=*e;
 		length++;
-		*(end+1)=*e;//插入 
 		delete e; 
 		return OK;
-	
-}
+	}
+
+//Status seq::InsertindexList(member *e){ 
+//		int id,temp;
+//		member *end,*t;
+//		t=m;
+//		end=t+length-1;//定义表尾 
+//		id=e->id;
+//		if(id>(length+1)||id<0)
+//			return ERROR;	//序号错误 直接返回 
+//		t=t+id-1;//定义要插入的位置 
+//		temp=length+1;
+//		while(end>=t){
+//			*(end+1)=*end;//将都往后移动一位 
+//			(end+1)->id=temp;//将移动后的元素序号改为1 
+//			end--; 
+//			temp--;	
+//		}
+//		length++;
+//		*(end+1)=*e;//插入 
+//		delete e; 
+//		return OK;
+//	
+//}
 void print(){
 	printf("*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*\n");  
    		printf("*=*               程序说明                *=*\n");  

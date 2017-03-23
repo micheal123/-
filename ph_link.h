@@ -32,7 +32,7 @@ void link::ReadFile(){
 	while(temp){
 	t->next=new member();
 	t=t->next;	//ÒÆ¶¯Ö¸Õë 
-	scanf("%d%s%s%d%d%s",&(t->id),&(t->name),&(t->sex),&(t->tle1),&(t->tle2),&(t->remark));
+	scanf("%d%s%s%d%d%s%s",&(t->id),&(t->name),&(t->sex),&(t->tle1),&(t->tle2),&(t->email),&(t->remark));
 	t->next=NULL;
 	temp--;
 	}
@@ -43,7 +43,7 @@ void link::QueryList(){
 	t=d;
 	while(t->next!=NULL){
 		t=t->next;	
-		printf("%d\t%s\t%s\t%d\t%d\t%s\n",(t->id),(t->name),(t->sex),(t->tle1),(t->tle2),(t->remark));
+		printf("%d\t%s\t%s\t%d\t%d\t%s\t%s\n",(t->id),(t->name),(t->sex),(t->tle1),(t->tle2),(t->email),(t->remark));
 	}
 }
 Status link::DeletList(ElemeType index){
@@ -95,7 +95,7 @@ Status link::InsertList(member *e){
 			t->next=e;
 			t=d->next;
 			temp=1;
-		while(t->next!=NULL){
+		while(t){
 			t->id=temp;		
 			t=t->next;	
 			temp++;	
