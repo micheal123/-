@@ -13,8 +13,8 @@ class member{
 	char name[MAXSIZE],sex[MAXSIZE],remark[MAXSIZE],email[MAXSIZE],tle1[MAXSIZE],tle2[MAXSIZE];
 	member *next;//链表时用的 
 };
-#include"ph_sq.h"
 #include"ph_link.h"
+#include"ph_sq.h"
 using namespace std;
 int main(){
   	ElemeType t,dt,num,id;
@@ -132,20 +132,21 @@ int main(){
             
         case 7:  
             {  
-            while(1){
-            	
-            }
             lk.QueryList();
                 /*head=load(head);*/  
-				while(1){
+			while(1){
 				printf("请输入要恢复第几条记录？\n");
 				scanf("%d",&id);
-				if(lk.DeletList(id,sq)){
-					printf("恢复成功！\n");
-					break;	
-				} else{
-					printf("恢复失败请重新输入！！！\n");	
-				}
+				if(id>lk.getlength()||id<1)
+				printf("恢复失败请重新输入！！！\n");	
+			else{
+			e=new member();
+			*e=lk.DeletList(id);
+			sq.InsertList(e);
+			printf("恢复成功！\n");
+			break;
+		}
+			
 				}
 				
 				  break;                           //查看被删目录  

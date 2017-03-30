@@ -8,12 +8,16 @@ class link{
 		void ReadFile();
 		void QueryList();	
 		void SaveFile();
-		Status DeletList(ElemeType index,seq &sq);
+		member DeletList(ElemeType index);
 		Status InsertList(member *e);
+		int getlength();
 }; 
 void link::setlink(int l,member* &p){
 		d=p;
 	length=l;
+}
+int link::getlength(){
+	return length;
 }
 Status link::InitList(){
 	d=new member();//初始化头节点
@@ -46,20 +50,18 @@ void link::QueryList(){
 		printf("%d\t%s\t%s\t%s\t%s\t%s\t%s\n",(t->id),(t->name),(t->sex),(t->tle1),(t->tle2),(t->email),(t->remark));
 	}
 }
-Status link::DeletList(ElemeType index,seq &sq){
+member link::DeletList(ElemeType index){
 	member *t,*dt;
 	ElemeType temp;
 	t=d;
-	if(index>length||index<1)
-		return ERROR;
 		dt=t->next;
 	while(dt->id!=index){
 		t=t->next;
 		dt=t->next; 
 	}
 		t->next=dt->next;	
-		sq.InsertList(dt);
-		delete dt;
+//		sq.InsertList(dt);
+//		delete dt;
 	length--;
 	t=d;
 	temp=1;
@@ -70,7 +72,7 @@ Status link::DeletList(ElemeType index,seq &sq){
 			temp++;	
 		}
 
-	return OK;
+	return *dt;
 }
 void link::SaveFile(){
 	printf("%d\n",length);
