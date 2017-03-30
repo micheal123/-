@@ -33,7 +33,7 @@ void seq::ReadFile(){
 	 temp=length;  
 	  while(temp)
 	   {	
-	   	scanf("%d%s%s%d%d%s%s",&(t->id),&(t->name),&(t->sex),&(t->tle1),&(t->tle2),&(t->email),&(t->remark));
+	   	scanf("%d%s%s%s%s%s%s",&(t->id),&(t->name),&(t->sex),&(t->tle1),&(t->tle2),&(t->email),&(t->remark));
 		temp--;
 		t++;
 	   }
@@ -51,7 +51,7 @@ void seq::QueryList(){
 	t=m;
 	temp=length;
 	while(temp){
-		printf("%d\t%s\t%s\t%d\t%d\t%s\t%s\n",(t->id),(t->name),(t->sex),(t->tle1),(t->tle2),(t->email),(t->remark));
+		printf("%d\t%s\t%s\t%s\t%s\t%s\t%s\n",(t->id),(t->name),(t->sex),(t->tle1),(t->tle2),(t->email),(t->remark));
 		temp--;
 		t++;
 	}

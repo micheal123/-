@@ -9,15 +9,15 @@ typedef int ElemeType;
 typedef ElemeType Status;
 class member{
 	public:
-	ElemeType id,tle1,tle2;
-	char name[MAXSIZE],sex[MAXSIZE],remark[MAXSIZE],email[MAXSIZE];
+	ElemeType id;
+	char name[MAXSIZE],sex[MAXSIZE],remark[MAXSIZE],email[MAXSIZE],tle1[MAXSIZE],tle2[MAXSIZE];
 	member *next;//链表时用的 
 };
-#include"ph_link.h"
 #include"ph_sq.h"
+#include"ph_link.h"
 using namespace std;
 int main(){
-  	ElemeType t,dt,num;
+  	ElemeType t,dt,num,id;
   	char flag[10];
   	class member *m ,*d,*e;//m是通讯录的原文件pm为第一个元素，d是被删除的表（链表）
 		link lk;
@@ -102,7 +102,7 @@ int main(){
             
         case 5:  
             {  
-            int id;	
+       	
 			printf("请输入要删除的序号：\n");
 			while(1){  
             scanf("%d",&id);
@@ -136,7 +136,18 @@ int main(){
             	
             }
             lk.QueryList();
-                /*head=load(head);*/   
+                /*head=load(head);*/  
+				while(1){
+				printf("请输入要恢复第几条记录？\n");
+				scanf("%d",&id);
+				if(lk.DeletList(id,sq)){
+					printf("恢复成功！\n");
+					break;	
+				} else{
+					printf("恢复失败请重新输入！！！\n");	
+				}
+				}
+				
 				  break;                           //查看被删目录  
             }  
            

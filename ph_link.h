@@ -8,7 +8,7 @@ class link{
 		void ReadFile();
 		void QueryList();	
 		void SaveFile();
-		Status DeletList(ElemeType index);
+		Status DeletList(ElemeType index,seq &sq);
 		Status InsertList(member *e);
 }; 
 void link::setlink(int l,member* &p){
@@ -32,7 +32,7 @@ void link::ReadFile(){
 	while(temp){
 	t->next=new member();
 	t=t->next;	//ÒÆ¶¯Ö¸Õë 
-	scanf("%d%s%s%d%d%s%s",&(t->id),&(t->name),&(t->sex),&(t->tle1),&(t->tle2),&(t->email),&(t->remark));
+	scanf("%d%s%s%s%s%s%s",&(t->id),&(t->name),&(t->sex),&(t->tle1),&(t->tle2),&(t->email),&(t->remark));
 	t->next=NULL;
 	temp--;
 	}
@@ -43,38 +43,30 @@ void link::QueryList(){
 	t=d;
 	while(t->next!=NULL){
 		t=t->next;	
-		printf("%d\t%s\t%s\t%d\t%d\t%s\t%s\n",(t->id),(t->name),(t->sex),(t->tle1),(t->tle2),(t->email),(t->remark));
+		printf("%d\t%s\t%s\t%s\t%s\t%s\t%s\n",(t->id),(t->name),(t->sex),(t->tle1),(t->tle2),(t->email),(t->remark));
 	}
 }
-Status link::DeletList(ElemeType index){
+Status link::DeletList(ElemeType index,seq &sq){
 	member *t,*dt;
 	ElemeType temp;
 	t=d;
 	if(index>length||index<1)
 		return ERROR;
-	if(index==1){
-		dt=t;
-		d=t->next;
-	}else if(index==length){
-		while(t->next->next!=NULL)
-		t=t->next;
 		dt=t->next;
-		t->next=NULL;
-	}else{
-		dt=t->next;
-		while(dt->id!=index){
+	while(dt->id!=index){
 		t=t->next;
 		dt=t->next; 
 	}
-		t->next=dt->next;
-	}
-	delete dt;
+		t->next=dt->next;	
+		sq.InsertList(dt);
+		delete dt;
 	length--;
 	t=d;
 	temp=1;
+
 		while(t->next!=NULL){
+		t=t->next;
 			t->id=temp;			
-			t=t->next;
 			temp++;	
 		}
 
