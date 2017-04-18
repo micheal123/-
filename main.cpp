@@ -19,7 +19,7 @@ int main(){
 	struct ShareStack st;
 	struct LinkStack *sl;
 	int i,flag=1;
-	char z[]="ABCBBBCBC",e;
+	char z[]="ABC",e;
 	sl=new LinkStack();//初始化头节点 
 	share_init(st,10);
 	while(z[i]!='\0'){
