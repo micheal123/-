@@ -2,9 +2,10 @@
 
 using namespace std;
 typedef char ElemType; 
-struct LinkStack{
+struct LinkQue{
 	ElemType data;
-	LinkStack *next;
+	LinkQue *next;
+	LinkQue *end;
 }; 
 struct ShareStack{
 	ElemType *base1;
@@ -14,24 +15,25 @@ struct ShareStack{
 	int Maxsize;
 };//共享栈提供两个top两个base分别代表两端。
 #include "ShareStack.h"
-#include "LinkStack.h" 
+#include "LinkQue.h" 
 int main(){
 	struct ShareStack st;
-	struct LinkStack *sl;
-	int i,flag=1;
+	struct LinkQue *sl;
+	int i=0,flag=1;
 	char z[]="ABC",e;
-	sl=new LinkStack();//初始化头节点 
+//	sl=new LinkQue();//初始化头节点 
+	link_init(sl);
 	share_init(st,10);
 	while(z[i]!='\0'){
 		switch(z[i]){
 			case 'A':
-				link_push(sl,z[i]);
+				share_push(st,z[i],2);
 			break;
 			case 'B':
 				share_push(st,z[i],1);
 			break;
 			case 'C':
-				share_push(st,z[i],2);
+				link_push(sl,z[i]);
 			break;
 			default:
 				break;
