@@ -20,8 +20,9 @@ int main(){
 	struct ShareStack st;
 	struct LinkQue *sl;
 	int i=0,flag=1;
-	char z[]="ABC",e;
+	char z[80],e;
 //	sl=new LinkQue();//初始化头节点 
+	scanf("%s",&z); 
 	link_init(sl);
 	share_init(st,10);
 	while(z[i]!='\0'){
