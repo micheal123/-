@@ -31,8 +31,8 @@ int main(){
 	else 
 		break;
 	} 
-
-	
-	
 	return 0;
+}
+void Precede(TElemType top,TElemType c){
+	
 }
