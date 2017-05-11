@@ -12,10 +12,17 @@ void push(Stack &st,TElemType e){
 	*st.top=e;
 	st.top++;
 }
+TElemType peek(Stack &st){
+	if(st.top==st.base){
+		printf("已经为空栈！！");
+		return '$'; 
+	}	
+	return *(st.top-1);	
+} 
 TElemType pop(Stack &st){
 	if(st.base==st.top){
-			printf("已经为空栈！！");
-			return '$'; 
+		printf("已经为空栈！！");
+		return '$'; 
 	}
 	st.top--;
 	return *st.top; 	
