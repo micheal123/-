@@ -6,7 +6,7 @@ void InitStack2(Stack2 &st){
 void push2(Stack2 &st,int e){
 	if((st.top+1)-st.base>20)
 	{	
-		printf("二栈的空间用完了！！");
+		printf("栈的空间用完了！！");
 		return; 
 	} 
 	*st.top=e;
@@ -15,7 +15,7 @@ void push2(Stack2 &st,int e){
 int pop2(Stack2 &st){
 	if(st.base==st.top){
 		printf("已经为空栈！！");
-		return '$'; 
+		return 0; 
 	}
 	st.top--;
 	return *st.top; 	
@@ -23,7 +23,7 @@ int pop2(Stack2 &st){
 int peek2(Stack2 &st){
 	if(st.top==st.base){
 			printf("已经为空栈！！");
-			return '$'; 
+			return 0; 
 	}
 	return *(st.top-1);
 }
