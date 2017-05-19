@@ -1,53 +1,69 @@
 #include<cstdio>
+#include<string> 
+#include <iostream>
+using namespace std;
 typedef char TElemType;
 struct Stack{
      TElemType *top,*base;
-     int Maxsize;
-};
-struct Stack2{
-     int *top,*base;
-     int Maxsize;
+     int Maxsize;//运算符类型 
 };
 typedef struct BiTNode {
-     TElemType  data ;
+    string  data ;
      struct BiTNode  *lchild , *rchild ;
 }BiTNode,*BiTree;
+struct Stack2{//数字类型 
+     BiTree *top,*base;
+     int Maxsize;
+};
 int In(TElemType c);
 int Operate(int num1,char t,int num2);
 char Precede(TElemType top,TElemType c);
-#include "test.h"
 #include "stack.h" 
 #include "stack2.h" 
+#include "tree.h"
 int main(){
 	Stack st;
-	Stack2 nt; 
-	char z[30],e,a,b,t;
+	Stack2 nt;
+	string e="",fh=""; 
+	char z[30],t;
+	BiTree bt,a,b;
 	int i=0,flag=1,n=0;//flag判断之前是否有数 
 	InitStack(st);
 	InitStack2(nt);
 	scanf("%s",&z);
 	push(st,'#');//先放入一个#号作为结束标记 
-	while(z[i]!='#'||peek(st)!='#'){
+	while(z[i]!='#'||pk(st)!='#'){
 		if(In(z[i])){//如果是整数则。。 
-			n=n*10+z[i]-'0';
+//			n=n*10+z[i]-'0';
+			e=e+z[i];//连整数 
 			flag=1;	
 			i++;		
 		}else{
 		if(flag){
-			push2(nt,n);//遇到运算符初始化将前一个数压入栈 
+			bt=new BiTNode;
+			bt->data=e;
+			bt->lchild=NULL;
+			bt->rchild=NULL;
+			push2(nt,bt);//遇到运算符初始化将前一个数压入栈 
+			e=""; 
 			n=0;
-			flag=0;	
+			flag=0;
 			}
-			switch(Precede(peek(st),z[i])){
+			switch(Precede(pk(st),z[i])){
 			case '=':
 				pop(st);
 				i++; 
 				break;
 			case '>':
-				t=pop(st);
-				a=pop2(nt);
+				t=pop(st);//字符类型 
+				a=pop2(nt);//树节点类型 
 				b=pop2(nt);
-				push2(nt,Operate(a,t,b));
+				bt=new BiTNode;
+				fh=t;
+				bt->data=fh;
+				bt->lchild=a;
+				bt->rchild=b;
+				push2(nt,bt);
 				break;
 			case '<':
 				push(st,z[i]);
@@ -57,7 +73,8 @@ int main(){
 		}
 	
 	}
-		printf("%d\n",peek2(nt)); 
+	mid_order(bt);
+//		printf("%d\n",peek2(nt)); 
 	return 0;
 }
 int In(TElemType c){

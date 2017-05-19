@@ -12,7 +12,7 @@ void push(Stack &st,TElemType e){
 	*st.top=e;
 	st.top++;
 }
-TElemType peek(Stack &st){
+TElemType pk(Stack &st){
 	if(st.top==st.base){
 		printf("ÒÑ¾­Îª¿ÕÕ»£¡£¡");
 		return '$'; 
