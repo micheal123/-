@@ -27,7 +27,7 @@ int main(){
 	InitStack2(nt);
 	scanf("%s",&z);
 	push(st,'#');//先放入一个#号作为结束标记 
-	while(z[i]!='\0'||peek(st)!='#'){
+	while(z[i]!='#'||peek(st)!='#'){//栈的顶部不为#输入为#都不成立退出循环。 
 		if(In(z[i])){//如果是整数则。。 
 			n=n*10+z[i]-'0';
 			flag=1;	
@@ -44,6 +44,7 @@ int main(){
 				i++; 
 				break;
 			case '>':
+//				printf("222222222\n"); 
 				t=pop(st);
 				a=pop2(nt);
 				b=pop2(nt);

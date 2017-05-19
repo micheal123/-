@@ -6,7 +6,7 @@ void InitStack2(Stack2 &st){
 void push2(Stack2 &st,int e){
 	if((st.top+1)-st.base>20)
 	{	
-		printf("栈的空间用完了！！");
+		printf("二栈的空间用完了！！");
 		return; 
 	} 
 	*st.top=e;
