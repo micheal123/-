@@ -19,7 +19,8 @@ char Precede(TElemType top,TElemType c);
 #include "stack.h" 
 #include "stack2.h" 
 int main(){
-	Stack st,nt;
+	Stack st;
+	Stack2 nt; 
 	char z[30],e,a,b,t;
 	int i=0,flag=1,n=0;//flag判断之前是否有数 
 	InitStack(st);
