@@ -1,6 +1,7 @@
 #include<cstdio>
 #include<string> 
 #include <iostream>
+#include <sstream>
 using namespace std;
 typedef char TElemType;
 struct Stack{
@@ -61,8 +62,8 @@ int main(){
 				bt=new BiTNode;
 				fh=t;
 				bt->data=fh;
-				bt->lchild=a;
-				bt->rchild=b;
+				bt->lchild=b;
+				bt->rchild=a;
 				push2(nt,bt);
 				break;
 			case '<':
@@ -73,7 +74,7 @@ int main(){
 		}
 	
 	}
-	mid_order(bt);
+	cout<<mid_order(bt);
 //		printf("%d\n",peek2(nt)); 
 	return 0;
 }
@@ -83,16 +84,16 @@ int In(TElemType c){
 	else
 		return 0;
 }
-int Operate(int num1,char t,int num2){
-	int sum;
-	switch(t){
-		case '+': sum=num1+num2; break;  
-        case '-': sum=num1-num2; break;  
-        case '*': sum=num1*num2; break;  
-        case '/': sum=num1/num2; break;  
-	}
-	return sum;
-} 
+//int Operate(int num1,char t,int num2){
+//	int sum;
+//	switch(t){
+//		case '+': sum=num1+num2; break;  
+//        case '-': sum=num1-num2; break;  
+//        case '*': sum=num1*num2; break;  
+//        case '/': sum=num1/num2; break;  
+//	}
+//	return sum;
+//} 
 char Precede(TElemType top,TElemType c){  
     int i,j;  
     char pre[][7]={           
